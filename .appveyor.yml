@@ -13,3 +13,4 @@ build_script:
 - cmd: cmake --build _build
 - cmd: cmake --build _build --target solver --config Release
 - cmd: echo "Testing solver is done"
+
