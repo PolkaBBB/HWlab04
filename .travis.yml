@@ -2,7 +2,6 @@ language: cpp
 
 os:
  - linux
- - osx
  
 compiler:
 - gcc
@@ -18,7 +17,6 @@ addons:
    - cmake-data
    - clang-3.7
    - g++-7
-   - rpm
 
 script:
  - cd hello_world_application
@@ -26,28 +24,9 @@ script:
  - cmake --build _build
  - cmake --build _build --target hello_world
  - ./_build/hello_world
- - echo "Hello world application testing is done"
+ - echo "Hello world is done"
  - cd ..
  - cd solver_application
  - cmake -H. -B_build
  - cmake --build _build
  - cmake --build _build --target solver
- - echo "Solver application testing is done"
- - cmake --build _build --target package_source
- - cd _build
- - if [ "$TRAVIS_OS_NAME" = "osx" ]; then cpack -G DragNDrop  ;fi
- - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cpack -G DEB  ;fi
- - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cpack -G RPM  ;fi
- 
-deploy:
- provider: releases
- api_key: d59053b9034ab7b9f0379b761a078059e1b3a779
- file:
-  - solver_application/_build/solver-source-files.tar.gz
-  - solver_application/_build/solver-source-files.zip
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then solver_application/_build/solver.dmg  ;fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then solver_application/_build/solver.deb  ;fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then solver_application/_build/solver.rpm  ;fi
- cleanup: true
- on:
-  tags: true
