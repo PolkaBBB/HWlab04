@@ -1,8 +1,8 @@
-cd formatter_lib
 cmake_minimum_required(VERSION 3.4)
-project(formatterlib)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(formatter STATIC formatter.cpp formatter.h)
+project(solver_lib)
+
+add_library(solver_lib STATIC solver.cpp)
