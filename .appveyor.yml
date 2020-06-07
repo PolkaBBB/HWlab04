@@ -1,28 +1,15 @@
-platform:
- - x86
- - x64
+image: Visual Studio 2019
 
 build_script:
- - cmd: cd hello_world_application
- - cmd: cmake -H. -B_build
- - cmd: cmake --build _build
- - cmd: cmake --build _build --target hello_world
- - cmd: _build\Debug\hello_world.exe
- - cmd: echo "Testing hello_world is done"
- - cmd: cd ..
- - cmd: cd solver_application
- - cmd: cmake -H. -B_build
- - cmd: cmake --build _build
- - cmd: cmake --build _build --target solver --config Release
- - cmd: echo "Testing solver is done"
- - cmd: cd _build
- - cmd: cpack -G WIX
-
-deploy:
- description: 'MSI release'
- provider: Github
- auth_token: d34fb68bb561afca064b2ec770204ae4def87211
- artifact: solver_application\_build\solver.msi
- draft: false
- on:
-  APPVEYOR_REPO_TAG: true
+- cmd: cd hello_world_application
+- cmd: cmake -H. -B_build
+- cmd: cmake --build _build
+- cmd: cmake --build _build --target hello_world
+- cmd: _build\Debug\hello_world.exe
+- cmd: echo "Testing hello_world is done"
+- cmd: cd ..
+- cmd: cd solver_application
+- cmd: cmake -H. -B_build
+- cmd: cmake --build _build
+- cmd: cmake --build _build --target solver --config Release
+- cmd: echo "Testing solver is done"
